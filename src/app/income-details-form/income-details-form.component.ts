@@ -8,9 +8,9 @@ import { NumericRangeValidator } from '../core/validators/numeric-range.validato
 import * as _ from 'lodash';
 
 @Component({
-  selector: 'app-incomedetailsform',
-  templateUrl: './incomedetailsform.component.html',
-  styleUrls: ['./incomedetailsform.component.css']
+  selector: 'app-incomedetails-form',
+  templateUrl: './income-details-form.component.html',
+  styleUrls: ['./income-details-form.component.css']
 })
 export class IncomedetailsformComponent implements OnInit, OnChanges {
 
@@ -19,7 +19,7 @@ export class IncomedetailsformComponent implements OnInit, OnChanges {
   includesSuper: boolean;
   superannuation: number;
 
-  incomeDetails: IncomeDetails = new IncomeDetails();
+  incomeDetails: IncomeDetails;
   taxDetails: TaxDetails;
 
   constructor(private fb: FormBuilder,
@@ -46,6 +46,14 @@ export class IncomedetailsformComponent implements OnInit, OnChanges {
   }
 
   calculate() {
-    console.log(this.idForm.value);
+    const formValues = this.idForm.value;
+    this.incomeDetails = new IncomeDetails(formValues.grossSalary,
+                                          formValues.includesSuper,
+                                          formValues.superannuation);
+    this.taxCalulatorService.calculateTax(this.incomeDetails).subscribe(taxDetailsData => {
+      this.taxDetails = taxDetailsData;
+      console.log('Gross amount: ' + this.taxDetails.GrossAmount);
+    });
   }
 }
+

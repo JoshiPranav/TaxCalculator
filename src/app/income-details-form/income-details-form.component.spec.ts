@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { IncomedetailsformComponent } from './incomedetailsform.component';
+import { IncomedetailsformComponent } from './income-details-form.component';
 
 describe('IncomedetailsformComponent', () => {
   let component: IncomedetailsformComponent;

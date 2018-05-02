@@ -10,7 +10,7 @@ import { TaxDetails } from '../../app/core/models/tax-details.model';
 })
 export class IncomeDetailsComponent implements OnInit, OnChanges {
 
-  public incomeDetails: IncomeDetails = new IncomeDetails();
+  public incomeDetails: IncomeDetails;
   public taxDetails: TaxDetails;
 
   constructor(private taxCalulatorService: TaxCalculatorService) {

@@ -4,13 +4,15 @@ import { ReactiveFormsModule, FormsModule, NG_VALIDATORS } from '@angular/forms'
 
 import { AppComponent } from './app.component';
 import { TaxCalculatorService } from './core/services/tax-calculator.service';
-import { IncomedetailsformComponent } from './incomedetailsform/incomedetailsform.component';
+import { IncomedetailsformComponent } from './income-details-form/income-details-form.component';
+import { TaxCalculatorComponent } from './tax-calculator/tax-calculator.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    IncomedetailsformComponent
+    IncomedetailsformComponent,
+    TaxCalculatorComponent
   ],
   imports: [
     BrowserModule,
