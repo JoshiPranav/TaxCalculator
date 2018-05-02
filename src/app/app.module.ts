@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { TaxCalculatorService } from './core/services/tax-calculator.service';
 import { IncomedetailsformComponent } from './income-details-form/income-details-form.component';
 import { TaxCalculatorComponent } from './tax-calculator/tax-calculator.component';
+import { TaxDetailsComponent } from './tax-details/tax-details.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     IncomedetailsformComponent,
-    TaxCalculatorComponent
+    TaxCalculatorComponent,
+    TaxDetailsComponent
   ],
   imports: [
     BrowserModule,

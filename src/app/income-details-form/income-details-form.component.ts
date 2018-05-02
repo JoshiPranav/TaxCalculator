@@ -1,8 +1,6 @@
-import { Component, OnInit, OnChanges } from '@angular/core';
+import { Component, OnInit, OnChanges, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IncomeDetails } from '../core/models/income-details.model';
-import { TaxDetails } from '../core/models/tax-details.model';
-import { TaxCalculatorService } from '../core/services/tax-calculator.service';
 import { PatternValidator } from '../core/validators/pattern.validator';
 import { NumericRangeValidator } from '../core/validators/numeric-range.validator';
 import * as _ from 'lodash';
@@ -20,10 +18,9 @@ export class IncomedetailsformComponent implements OnInit, OnChanges {
   superannuation: number;
 
   incomeDetails: IncomeDetails;
-  taxDetails: TaxDetails;
+  @Output() calculator = new EventEmitter();
 
-  constructor(private fb: FormBuilder,
-              private taxCalulatorService: TaxCalculatorService) {
+  constructor(private fb: FormBuilder) {
   }
 
   ngOnInit() {
@@ -50,10 +47,7 @@ export class IncomedetailsformComponent implements OnInit, OnChanges {
     this.incomeDetails = new IncomeDetails(formValues.grossSalary,
                                           formValues.includesSuper,
                                           formValues.superannuation);
-    this.taxCalulatorService.calculateTax(this.incomeDetails).subscribe(taxDetailsData => {
-      this.taxDetails = taxDetailsData;
-      console.log('Gross amount: ' + this.taxDetails.GrossAmount);
-    });
-  }
+    this.calculator.emit(this.incomeDetails);
+    }
 }
 
