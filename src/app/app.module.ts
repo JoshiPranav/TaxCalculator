@@ -7,6 +7,8 @@ import { TaxCalculatorService } from './core/services/tax-calculator.service';
 import { IncomedetailsformComponent } from './income-details-form/income-details-form.component';
 import { TaxCalculatorComponent } from './tax-calculator/tax-calculator.component';
 import { TaxDetailsComponent } from './tax-details/tax-details.component';
+import { SuperCalculatorService } from './core/services/super-calculator.service';
+import { IncomeTaxCalculatorService } from './core/services/income-tax-calculator.service';
 
 
 @NgModule({
@@ -21,7 +23,7 @@ import { TaxDetailsComponent } from './tax-details/tax-details.component';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [TaxCalculatorService],
+  providers: [TaxCalculatorService, SuperCalculatorService, IncomeTaxCalculatorService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

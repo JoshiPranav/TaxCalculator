@@ -22,7 +22,6 @@ export class TaxCalculatorComponent implements OnInit {
     this.incomeDetails = event;
     this.taxCalulatorService.calculateTax(this.incomeDetails).subscribe(taxDetailsData => {
       this.taxDetails = taxDetailsData;
-      console.log('Gross amount: ' + this.taxDetails.GrossAmount);
     });
   }
 }

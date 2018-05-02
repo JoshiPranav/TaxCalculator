@@ -42,6 +42,10 @@ export class IncomedetailsformComponent implements OnInit, OnChanges {
     });
   }
 
+  reset() {
+    this.idForm.reset();
+  }
+
   calculate() {
     const formValues = this.idForm.value;
     this.incomeDetails = new IncomeDetails(formValues.grossSalary,

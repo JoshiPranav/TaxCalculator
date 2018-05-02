@@ -2,7 +2,7 @@
   <div class="panel-heading">
       <h3>Enter income details</h3>
   </div>
-<div class="panel-body top-buffer">
+<div class="panel-body top-buffer-25">
 <form class="form-horizontal" [formGroup]="idForm" (ngSubmit)="calculate()" autocomplete="off" novalidate>
   <fieldset>
   <div class="form-group row"  [ngClass]="{'has-error': (idForm.get('grossSalary').touched || 
@@ -43,7 +43,7 @@
       <label class="form-check-label" for="includesSuperId">Includes superannuation</label>
     </div>
   </div>
-  <div class="form-group row top-buffer"
+  <div class="form-group row top-buffer-25"
               [ngClass]="{'has-error': (idForm.get('superannuation').touched || 
                                         idForm.get('superannuation').dirty) &&
                                         !idForm.get('superannuation').valid }">
@@ -70,13 +70,20 @@
                         </span>
                       </div>
   </div>
-  <div class="form-group">
-      <div class="col-md-4 col-md-offset-2">
+  <div class="form-group row">
+      <div class="col-md-1">
         <span>
           <button class="btn btn-primary"
                   type="submit"
                   [disabled]="!idForm.valid">
               Calculate
+          </button>
+      </span>
+      </div>
+      <div class="col-md-1">
+        <span>
+          <button class="btn btn-primary" (click)="reset()">
+              Reset
           </button>
       </span>
       </div>

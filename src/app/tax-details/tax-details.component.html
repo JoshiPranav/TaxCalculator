@@ -1,4 +1,26 @@
-<p>
-  tax-details works!
-  {{taxDetails.GrossAmount}}
-</p>
+<div class="panel panel-primary">
+  <div class="panel-heading">
+      <h3>Tax details</h3>
+  </div>
+<div class="panel-body top-buffer-25">
+<div class="row">
+  <div class="col-md-2">Superannuation</div>
+  <div>${{taxDetails.Superannuation}}</div>
+</div>
+<div class="row">
+  <div class="col-md-2">Gross</div>
+  <div>${{taxDetails.GrossAmount}}</div>
+</div>
+<div class="row">
+  <div class="col-md-2">Tax</div>
+  <div>${{taxDetails.Tax}}</div>
+</div>
+<div class="row">
+  <div class="col-md-2">Net</div>
+  <div>${{taxDetails.NetAmount}}</div>
+</div>
+<div class="row">
+  <div class="col-md-2">Net + Superannuation</div>
+  <div>${{taxDetails.NetWithSuper}}</div>
+</div>
+</div>

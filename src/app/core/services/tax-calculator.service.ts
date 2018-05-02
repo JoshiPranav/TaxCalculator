@@ -3,15 +3,32 @@ import { IncomeDetails } from '../models/income-details.model';
 import { TaxDetails } from '../models/tax-details.model';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
+import { SuperCalculatorService } from './super-calculator.service';
+import { IncomeTaxCalculatorService } from './income-tax-calculator.service';
 
 @Injectable()
 export class TaxCalculatorService {
 
-  constructor() { }
+  constructor(private superCalculatorService: SuperCalculatorService,
+    private incomeTaxCalculatorService: IncomeTaxCalculatorService) { }
 
   calculateTax(incomeDetails: IncomeDetails): Observable<TaxDetails> {
     const taxDetails = new TaxDetails();
-    taxDetails.GrossAmount = incomeDetails.grossSalary;
+
+    taxDetails.Superannuation = this.superCalculatorService.calculateSuper(incomeDetails);
+
+    taxDetails.GrossAmount = incomeDetails.includesSuper === true
+                                      ? incomeDetails.grossSalary - +taxDetails.Superannuation
+                                      : incomeDetails.grossSalary + +taxDetails.Superannuation;
+
+    taxDetails.Tax = this.incomeTaxCalculatorService.calculateTax(incomeDetails.grossSalary,
+                                        +taxDetails.Superannuation,
+                                        incomeDetails.includesSuper);
+
+    taxDetails.NetAmount = incomeDetails.grossSalary - +taxDetails.Superannuation - +taxDetails.Tax;
+
+    taxDetails.NetWithSuper = +taxDetails.NetAmount + +taxDetails.Superannuation;
+
     return Observable.of(taxDetails);
-  }
+    }
 }
