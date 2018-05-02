@@ -1,18 +1,23 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { ReactiveFormsModule, FormsModule, NG_VALIDATORS } from '@angular/forms';
 
 import { AppComponent } from './app.component';
+import { TaxCalculatorService } from './core/services/tax-calculator.service';
+import { IncomedetailsformComponent } from './incomedetailsform/incomedetailsform.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    IncomedetailsformComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [TaxCalculatorService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

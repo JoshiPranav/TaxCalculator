@@ -1,0 +1,74 @@
+<form #f="ngForm" autocomplete="off">
+<div class="form-group row">
+    <div class="col-md-2">
+      <label for="grossSalarytxt">Gross Annual Income</label>
+    </div>
+    <div class="">
+        <input type="text" 
+          class="form-control" 
+          id="grossSalarytxt" 
+          name="grossSalary" 
+          placeholder="Enter income $"
+          [(ngModel)]="incomeDetails.grossSalary"
+          #grosssalary = "ngModel"
+          required
+          pattern="^\$?([0-9]{1,3},([0-9]{3},)*[0-9]{3}|[0-9]+)(.[0-9][0-9]?)?$"
+          appGreaterThanValue=0 />
+        <div *ngIf="grosssalary.invalid && (grosssalary.dirty || grosssalary.touched)"
+          class="alert alert-danger">
+          <div *ngIf = "grosssalary.errors?.required">
+              Gross salary can't be blank
+          </div>
+          <div *ngIf = "grosssalary.errors?.pattern && grosssalary.touched">
+              Gross salary amount doesn't seem right
+          </div>
+          <div *ngIf="grosssalary.errors?.greaterThanValue">
+            Gross salary amount should be greater than 0
+        </div>
+        </div>
+    </div>
+</div>
+<div class="form-group row">
+  <div class="col-md-2">
+  </div>
+  <div class="pad-left-20">
+    <input type="checkbox" 
+        class="form-check-input" 
+        id="includesuperchk" 
+        name="includesSuper" 
+        [(ngModel)]="incomeDetails.includesSuper" />
+    <label class="form-check-label" for="includesuperchk">Includes superannuation</label>
+  </div>
+</div>
+<div class="form-group row top-buffer">
+    <div class="col-md-2">
+      <label for="superannuationtxt">Superannuation</label>
+    </div>
+    <div>
+        <input type="text"
+          class="form-control"
+          id="superannuationtxt" 
+          name="superannuation" 
+          placeholder="Enter superannuation %"
+          [(ngModel)]="incomeDetails.superannuation"
+          #superannuation = "ngModel" 
+          pattern="^\d{0,2}(\.\d{1,2})? *%?$"
+          appGreaterThanValue=9.49 />
+        <div *ngIf="superannuation.invalid && (superannuation.dirty || superannuation.touched)"
+          class="alert alert-danger">
+          <div *ngIf = "superannuation.errors?.pattern && superannuation.touched">
+              Superannuation amount doesn't seem right
+          </div>
+          <div *ngIf="superannuation.errors?.greaterThanValue">
+              Superannuation amount should be greater than or equal to 9.5%
+          </div>
+        </div>
+    </div>
+</div>
+<div class="row top-buffer">
+    <div class="col-md-2"></div>
+    <div>
+      <button type="submit" class="btn btn-primary" (click)="Calculate()" [disabled]="f.invalid">Calculate</button>
+    </div>
+</div>
+</form>
