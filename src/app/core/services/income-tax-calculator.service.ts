@@ -1,5 +1,9 @@
 import { Injectable } from '@angular/core';
-import { TaxSlab1Handler, TaxSlab2Handler, TaxSlab3Handler, TaxSlab4Handler, TaxSlab5Handler } from './tax-handler';
+import { TaxSlab1Handler } from '../providers/tax-slab1-handler';
+import { TaxSlab2Handler } from '../providers/tax-slab2-handler';
+import { TaxSlab3Handler } from '../providers/tax-slab3-handler';
+import { TaxSlab4Handler } from '../providers/tax-slab4-handler';
+import { TaxSlab5Handler } from '../providers/tax-slab5-handler';
 
 @Injectable()
 export class IncomeTaxCalculatorService {
@@ -21,7 +25,8 @@ export class IncomeTaxCalculatorService {
     const taxSlab4Handler = new TaxSlab4Handler();
     const taxSlab5Handler = new TaxSlab5Handler();
 
-    // Chain of responsibility - Series of handlers are responsible for calling their successors..if need be.
+    // Chain of responsibility
+    // Series of handlers are responsible for calling their successors..if need be.
     taxSlab1Handler.setSuccessor(taxSlab2Handler);
     taxSlab2Handler.setSuccessor(taxSlab3Handler);
     taxSlab3Handler.setSuccessor(taxSlab4Handler);
