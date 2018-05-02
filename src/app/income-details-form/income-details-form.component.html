@@ -1,15 +1,17 @@
-<div class="panel panel-primary">
-  <div class="panel-heading">
-      <h3>Enter income details</h3>
+<div class="row justify-content-center">
+    <div class="col-md-10">
+<div class="card bg-secondary mb-3">
+  <div class="card-header">
+      <h3>Income</h3>
   </div>
-<div class="panel-body top-buffer-25">
+<div class="card-body">
 <form class="form-horizontal" [formGroup]="idForm" (ngSubmit)="calculate()" autocomplete="off" novalidate>
   <fieldset>
   <div class="form-group row"  [ngClass]="{'has-error': (idForm.get('grossSalary').touched || 
                                                     idForm.get('grossSalary').dirty) &&
                                                     !idForm.get('grossSalary').valid }">
-    <label class="col-md-1 control-label" for="grossSalaryId">Gross Income</label>
-    <div class="col-md-2">
+    <label class="col-md-3 control-label" for="grossSalaryId">Gross Income</label>
+    <div class="col-md-3">
           <input type="text" 
               class="form-control" 
               placeholder="Enter income $"
@@ -23,19 +25,20 @@
                           idForm.get('grossSalary').dirty) && 
                           idForm.get('grossSalary').errors">
                             <span *ngIf="idForm.get('grossSalary').errors?.required" class="alert alert-danger">
-                              Gross salary can't be empty
+                              Amount can't be empty
                             </span>
                             <span *ngIf="idForm.get('grossSalary').errors?.pattern" class="alert alert-danger">
-                              Gross salary amount doesn't seem right
+                              Amount doesn't seem right
                             </span>
                             <span *ngIf="idForm.get('grossSalary').errors?.numericRangeInvalid" class="alert alert-danger">
-                              Gross salary amount must be greater than 0
+                              Must be greater than 0
                             </span>
                         </span>
       </div>
   </div>
-  <div class="form-group">
-    <div class="col-md-2 pad-left-30">
+  <div class="form-group row pad-left-30">
+    <div class="col-md-3"></div>
+    <div class="col-md-3">
       <input type="checkbox" 
           class="form-check-input"
           id="includesSuperId"
@@ -47,8 +50,8 @@
               [ngClass]="{'has-error': (idForm.get('superannuation').touched || 
                                         idForm.get('superannuation').dirty) &&
                                         !idForm.get('superannuation').valid }">
-        <label class="col-md-1" for="superannuationId">Superannuation</label>
-      <div class="col-md-2">
+        <label class="col-md-3" for="superannuationId">Superannuation</label>
+      <div class="col-md-3">
           <input type="text"
             class="form-control"
             placeholder="Enter superannuation %"
@@ -62,16 +65,17 @@
                           idForm.get('superannuation').dirty) && 
                           idForm.get('superannuation').errors">
                             <span *ngIf="idForm.get('superannuation').errors?.pattern" class="alert alert-danger">
-                              Superannuation amount doesn't seem right
+                              Amount doesn't seem right
                             </span>
                             <span *ngIf="idForm.get('superannuation').errors?.numericRangeInvalid" class="alert alert-danger">
-                              Superannuation amount must be greater than 9.5 and less than 100
+                              Must be between 9.5 and 100
                             </span>
                         </span>
                       </div>
   </div>
   <div class="form-group row">
-      <div class="col-md-1">
+      <div class="col-md-3"></div>
+      <div class="col-md-2">
         <span>
           <button class="btn btn-primary"
                   type="submit"
@@ -80,7 +84,7 @@
           </button>
       </span>
       </div>
-      <div class="col-md-1">
+      <div class="">
         <span>
           <button class="btn btn-primary" (click)="reset()">
               Reset
@@ -90,5 +94,7 @@
   </div>
 </fieldset>
   </form>
+</div>
+</div>
 </div>
 </div>

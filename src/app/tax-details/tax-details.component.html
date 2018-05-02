@@ -1,26 +1,30 @@
-<div class="panel panel-primary">
-  <div class="panel-heading">
+<div class="row justify-content-center">
+  <div class="col-md-10">
+<div class="card mx-auto bg-secondary mb-3">
+  <div class="card-header">
       <h3>Tax details</h3>
   </div>
-<div class="panel-body top-buffer-25">
-<div class="row">
-  <div class="col-md-2">Superannuation</div>
-  <div>${{taxDetails.Superannuation}}</div>
+<div class="card-body">
+<div class="row  pad-bot-10">
+  <div class="col-md-3">Superannuation</div>
+  <div class="font-thick">${{taxDetails.Superannuation | number : '1.2-2'}}</div>
 </div>
-<div class="row">
-  <div class="col-md-2">Gross</div>
-  <div>${{taxDetails.GrossAmount}}</div>
+<div class="row  pad-bot-10">
+  <div class="col-md-3">Gross</div>
+  <div class="font-thick">${{taxDetails.GrossAmount | number : '1.2-2'}}</div>
 </div>
-<div class="row">
-  <div class="col-md-2">Tax</div>
-  <div>${{taxDetails.Tax}}</div>
+<div class="row  pad-bot-10">
+  <div class="col-md-3">Tax</div>
+  <div class="font-thick">${{taxDetails.Tax | number : '1.2-2'}}</div>
 </div>
-<div class="row">
-  <div class="col-md-2">Net</div>
-  <div>${{taxDetails.NetAmount}}</div>
+<div class="row  pad-bot-10">
+  <div class="col-md-3">Net</div>
+  <div class="font-thick">${{taxDetails.NetAmount | number : '1.2-2'}}</div>
 </div>
-<div class="row">
-  <div class="col-md-2">Net + Superannuation</div>
-  <div>${{taxDetails.NetWithSuper}}</div>
+<div class="row  pad-bot-10">
+  <div class="col-md-3">Net + Superannuation</div>
+  <div class="font-thick">${{taxDetails.NetWithSuper | number : '1.2-2'}}</div>
+</div>
+</div>
 </div>
 </div>

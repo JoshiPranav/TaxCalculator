@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { TaxSlab1Handler, TaxSlab2Handler, TaxSlab3Handler, TaxSlab4Handler, TaxSlab5Handler } from './tax-handler';
 
 @Injectable()
 export class IncomeTaxCalculatorService {
@@ -7,7 +8,6 @@ export class IncomeTaxCalculatorService {
 
   calculateTax(grossSalary: number, superAmount: number, grossIncludesSuper: boolean): number {
     let taxableSalary: number;
-    let totalTax = 0;
 
     if (grossIncludesSuper === true) {
       taxableSalary = grossSalary - superAmount;
@@ -15,31 +15,18 @@ export class IncomeTaxCalculatorService {
       taxableSalary = grossSalary;
     }
 
-    // slab-1
-    if (taxableSalary <= 18200) {
-      return totalTax;
-    }
+    const taxSlab1Handler = new TaxSlab1Handler();
+    const taxSlab2Handler = new TaxSlab2Handler();
+    const taxSlab3Handler = new TaxSlab3Handler();
+    const taxSlab4Handler = new TaxSlab4Handler();
+    const taxSlab5Handler = new TaxSlab5Handler();
 
-    // slab-2
-    if (taxableSalary <= 37000) {
-      totalTax = ((taxableSalary - 18200) * 0.19);
-      return totalTax;
-    }
+    // Chain of responsibility - Series of handlers are responsible for calling their successors..if need be.
+    taxSlab1Handler.setSuccessor(taxSlab2Handler);
+    taxSlab2Handler.setSuccessor(taxSlab3Handler);
+    taxSlab3Handler.setSuccessor(taxSlab4Handler);
+    taxSlab4Handler.setSuccessor(taxSlab5Handler);
 
-    // slab-3
-    if (taxableSalary <= 87000) {
-      totalTax = ((taxableSalary - 37000) * 0.325) + 3572;
-      return totalTax;
-    }
-
-    // slab-4
-    if (taxableSalary <= 180000) {
-      totalTax = ((taxableSalary - 87000) * 0.37) + 19822;
-      return totalTax;
-    }
-
-    // slab-5
-    totalTax = ((taxableSalary - 180000) * 0.45) + 54232;
-    return totalTax;
+    return taxSlab1Handler.Handle(taxableSalary);
   }
 }

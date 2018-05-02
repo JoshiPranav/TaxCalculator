@@ -25,7 +25,9 @@ export class TaxCalculatorService {
                                         +taxDetails.Superannuation,
                                         incomeDetails.includesSuper);
 
-    taxDetails.NetAmount = incomeDetails.grossSalary - +taxDetails.Superannuation - +taxDetails.Tax;
+    taxDetails.NetAmount = incomeDetails.includesSuper === true
+                                      ? incomeDetails.grossSalary - +taxDetails.Superannuation - +taxDetails.Tax
+                                      : incomeDetails.grossSalary - +taxDetails.Tax;
 
     taxDetails.NetWithSuper = +taxDetails.NetAmount + +taxDetails.Superannuation;
 
