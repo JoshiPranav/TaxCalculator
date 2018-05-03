@@ -10,7 +10,6 @@ import { TaxDetailsComponent } from './tax-details/tax-details.component';
 import { SuperCalculatorService } from './core/services/super-calculator.service';
 import { IncomeTaxCalculatorService } from './core/services/income-tax-calculator.service';
 
-
 @NgModule({
   declarations: [
     AppComponent,

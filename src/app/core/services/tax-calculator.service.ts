@@ -18,18 +18,18 @@ export class TaxCalculatorService {
     taxDetails.Superannuation = this.superCalculatorService.calculateSuper(incomeDetails);
 
     taxDetails.GrossAmount = incomeDetails.includesSuper === true
-                                      ? incomeDetails.grossSalary - +taxDetails.Superannuation
-                                      : incomeDetails.grossSalary + +taxDetails.Superannuation;
+                                      ? incomeDetails.grossSalary - taxDetails.Superannuation
+                                      : incomeDetails.grossSalary + taxDetails.Superannuation;
 
     taxDetails.Tax = this.incomeTaxCalculatorService.calculateTax(incomeDetails.grossSalary,
-                                        +taxDetails.Superannuation,
+                                        taxDetails.Superannuation,
                                         incomeDetails.includesSuper);
 
     taxDetails.NetAmount = incomeDetails.includesSuper === true
-                                      ? incomeDetails.grossSalary - +taxDetails.Superannuation - +taxDetails.Tax
-                                      : incomeDetails.grossSalary - +taxDetails.Tax;
+                                      ? incomeDetails.grossSalary - taxDetails.Superannuation - taxDetails.Tax
+                                      : incomeDetails.grossSalary - taxDetails.Tax;
 
-    taxDetails.NetWithSuper = +taxDetails.NetAmount + +taxDetails.Superannuation;
+    taxDetails.NetWithSuper = taxDetails.NetAmount + taxDetails.Superannuation;
 
     return Observable.of(taxDetails);
     }

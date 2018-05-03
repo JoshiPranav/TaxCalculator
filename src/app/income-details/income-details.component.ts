@@ -16,7 +16,6 @@ export class IncomedetailsComponent implements OnInit, OnChanges {
   grossSalary: number;
   includesSuper: boolean;
   superannuation: number;
-
   incomeDetails: IncomeDetails;
   @Output() calculator = new EventEmitter();
 

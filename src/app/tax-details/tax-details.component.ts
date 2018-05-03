@@ -10,7 +10,8 @@ export class TaxDetailsComponent implements OnInit {
 
   @Input() taxDetails: TaxDetails;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }
