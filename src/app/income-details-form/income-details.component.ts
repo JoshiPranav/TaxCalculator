@@ -6,11 +6,11 @@ import { NumericRangeValidator } from '../core/validators/numeric-range.validato
 import * as _ from 'lodash';
 
 @Component({
-  selector: 'app-incomedetails-form',
-  templateUrl: './income-details-form.component.html',
-  styleUrls: ['./income-details-form.component.css']
+  selector: 'app-income-details',
+  templateUrl: './income-details.component.html',
+  styleUrls: ['./income-details.component.css']
 })
-export class IncomedetailsformComponent implements OnInit, OnChanges {
+export class IncomedetailsComponent implements OnInit, OnChanges {
 
   idForm: FormGroup;
   grossSalary: number;

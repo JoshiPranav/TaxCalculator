@@ -1,9 +1,9 @@
 export abstract class TaxHandlerBase {
-  protected successor: TaxHandlerBase;
+  protected next: TaxHandlerBase;
   constructor() {
   }
   setSuccessor(successor: TaxHandlerBase) {
-    this.successor = successor;
+    this.next = successor;
   }
   abstract Handle(grossSalary: number): number;
 }

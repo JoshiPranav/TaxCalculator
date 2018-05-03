@@ -6,7 +6,7 @@ export class TaxSlab1Handler extends TaxHandlerBase {
     if (taxableSalary <= 18200) {
       return 0;
     } else {
-      return this.successor.Handle(taxableSalary);
+      return this.next.Handle(taxableSalary);
     }
   }
 }
