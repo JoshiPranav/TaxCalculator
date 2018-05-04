@@ -48,6 +48,10 @@ export class IncomedetailsComponent implements OnInit, OnChanges {
       superAnnuationControl.setValidators([NumericRangeValidator(9.49, 100),
         PatternValidator(new RegExp('^\\d{0,2}(\\.\\d{1,2})? *%?$')),
         Validators.required]);
+        // if (this.idForm.value.superannuation.trim() === '') {
+        //   alert(this.idForm.value.superannuation);
+        //   superAnnuationControl.setValue(9.5);
+        // }
     } else {
       superAnnuationControl.setValidators([NumericRangeValidator(9.49, 100),
         PatternValidator(new RegExp('^\\d{0,2}(\\.\\d{1,2})? *%?$'))]);
@@ -65,6 +69,6 @@ export class IncomedetailsComponent implements OnInit, OnChanges {
                                           formValues.includesSuper,
                                           formValues.superannuation);
     this.calculator.emit(this.incomeDetails);
-    }
+  }
 }
 
