@@ -1,7 +1,6 @@
 import { AbstractControl, ValidatorFn, FormGroup } from '@angular/forms';
 
-export class PatternValidator {
-  public static Validate(regexp: RegExp): ValidatorFn {
+export function PatternValidator(regexp: RegExp): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } => {
       const value = control.value;
       if (value === '') {
@@ -10,5 +9,5 @@ export class PatternValidator {
       return !regexp.test(value) ? { 'patternInvalid': { regexp } } : null;
     };
   }
-}
+
 

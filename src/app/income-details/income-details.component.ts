@@ -26,9 +26,10 @@ export class IncomedetailsComponent implements OnInit, OnChanges {
     this.idForm = this.fb.group({
       grossSalary : ['',
                       [Validators.required,
-                        NumericRangeValidator(0, null)]],
+                        NumericRangeValidator(0, null),
+                      PatternValidator(new RegExp('^\\$?([0-9]{1,3},([0-9]{3},)*[0-9]{3}|[0-9]+)(.[0-9][0-9]?)?$'))]],
       includesSuper : '',
-      superannuation : ['', [NumericRangeValidator(9.49, 100)]]
+      superannuation : ['', [NumericRangeValidator(9.49, 100), PatternValidator(new RegExp('^\\d{0,2}(\\.\\d{1,2})? *%?$'))]]
     });
     this.ngOnChanges();
   }
@@ -39,6 +40,19 @@ export class IncomedetailsComponent implements OnInit, OnChanges {
         this.calculate();
       }
     });
+  }
+
+  toggleInclSuper(e) {
+    const superAnnuationControl = this.idForm.get('superannuation');
+    if (e.target.checked) {
+      superAnnuationControl.setValidators([NumericRangeValidator(9.49, 100),
+        PatternValidator(new RegExp('^\\d{0,2}(\\.\\d{1,2})? *%?$')),
+        Validators.required]);
+    } else {
+      superAnnuationControl.setValidators([NumericRangeValidator(9.49, 100),
+        PatternValidator(new RegExp('^\\d{0,2}(\\.\\d{1,2})? *%?$'))]);
+    }
+    superAnnuationControl.updateValueAndValidity();
   }
 
   reset() {
