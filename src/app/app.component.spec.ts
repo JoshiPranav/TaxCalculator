@@ -13,6 +13,7 @@ import { TaxSlab2Handler } from './core/providers/tax-slab2-handler';
 import { TaxSlab3Handler } from './core/providers/tax-slab3-handler';
 import { TaxSlab4Handler } from './core/providers/tax-slab4-handler';
 import { TaxSlab5Handler } from './core/providers/tax-slab5-handler';
+import { TaxableSalaryCalculatorService } from './core/services/taxable-salary-calculator.service';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -28,6 +29,7 @@ describe('AppComponent', () => {
       ],
       providers: [
         TaxCalculatorService,
+        TaxableSalaryCalculatorService,
         IncomeTaxCalculatorService,
         SuperCalculatorService,
         TaxHandlerBase,

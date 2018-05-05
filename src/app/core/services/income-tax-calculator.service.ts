@@ -10,15 +10,7 @@ export class IncomeTaxCalculatorService {
 
   constructor() { }
 
-  calculateTax(grossSalary: number, superAmount: number, grossIncludesSuper: boolean): number {
-    let taxableSalary: number;
-
-    if (grossIncludesSuper === true) {
-      taxableSalary = grossSalary - superAmount;
-    } else {
-      taxableSalary = grossSalary;
-    }
-
+  calculateTax(taxableSalary: number): number {
     const taxSlab1Handler = new TaxSlab1Handler();
     const taxSlab2Handler = new TaxSlab2Handler();
     const taxSlab3Handler = new TaxSlab3Handler();
@@ -32,6 +24,6 @@ export class IncomeTaxCalculatorService {
     taxSlab3Handler.setSuccessor(taxSlab4Handler);
     taxSlab4Handler.setSuccessor(taxSlab5Handler);
 
-    return taxSlab1Handler.Handle(taxableSalary);
+    return +taxSlab1Handler.Handle(taxableSalary).toFixed(2);
   }
 }

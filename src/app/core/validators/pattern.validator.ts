@@ -9,5 +9,3 @@ export function PatternValidator(regexp: RegExp): ValidatorFn {
       return !regexp.test(value) ? { 'patternInvalid': { regexp } } : null;
     };
   }
-
-
