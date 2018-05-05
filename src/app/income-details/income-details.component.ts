@@ -48,10 +48,9 @@ export class IncomedetailsComponent implements OnInit, OnChanges {
       superAnnuationControl.setValidators([NumericRangeValidator(9.49, 100),
         PatternValidator(new RegExp('^\\d{0,2}(\\.\\d{1,2})? *%?$')),
         Validators.required]);
-        // if (this.idForm.value.superannuation.trim() === '') {
-        //   alert(this.idForm.value.superannuation);
-        //   superAnnuationControl.setValue(9.5);
-        // }
+        if (superAnnuationControl.value != null && '' + superAnnuationControl.value.trim() === '') {
+          superAnnuationControl.setValue('9.5');
+        }
     } else {
       superAnnuationControl.setValidators([NumericRangeValidator(9.49, 100),
         PatternValidator(new RegExp('^\\d{0,2}(\\.\\d{1,2})? *%?$'))]);
@@ -65,9 +64,13 @@ export class IncomedetailsComponent implements OnInit, OnChanges {
 
   calculate() {
     const formValues = this.idForm.value;
-    this.incomeDetails = new IncomeDetails(formValues.grossSalary,
+    const grossSalary = formValues.grossSalary == null ? 0
+                          : +formValues.grossSalary.replace('$', '');
+    const superannuation = formValues.superannuation == null ? 0
+                          : +formValues.superannuation.replace('%', '');
+    this.incomeDetails = new IncomeDetails(grossSalary,
                                           formValues.includesSuper,
-                                          formValues.superannuation);
+                                          superannuation);
     this.calculator.emit(this.incomeDetails);
   }
 }

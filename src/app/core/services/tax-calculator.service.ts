@@ -17,20 +17,20 @@ export class TaxCalculatorService {
 
     taxDetails.Superannuation = this.superCalculatorService.calculateSuper(incomeDetails);
 
-    taxDetails.GrossAmount = incomeDetails.includesSuper === true
-                                      ? incomeDetails.grossSalary - taxDetails.Superannuation
-                                      : incomeDetails.grossSalary + taxDetails.Superannuation;
-
     taxDetails.Tax = this.incomeTaxCalculatorService.calculateTax(incomeDetails.grossSalary,
-                                        taxDetails.Superannuation,
-                                        incomeDetails.includesSuper);
+      taxDetails.Superannuation,
+      incomeDetails.includesSuper);
 
-    taxDetails.NetAmount = incomeDetails.includesSuper === true
-                                      ? incomeDetails.grossSalary - taxDetails.Superannuation - taxDetails.Tax
-                                      : incomeDetails.grossSalary - taxDetails.Tax;
-
-    taxDetails.NetWithSuper = taxDetails.NetAmount + taxDetails.Superannuation;
+    if (incomeDetails.includesSuper === true) {
+      taxDetails.GrossAmount = incomeDetails.grossSalary - taxDetails.Superannuation;
+      taxDetails.NetAmount = incomeDetails.grossSalary - taxDetails.Superannuation - taxDetails.Tax;
+      taxDetails.GrossIncludesSuper = false;
+    } else {
+      taxDetails.GrossAmount = incomeDetails.grossSalary + taxDetails.Superannuation;
+      taxDetails.GrossIncludesSuper = true;
+      taxDetails.NetAmount = incomeDetails.grossSalary - taxDetails.Tax;
+    }
 
     return Observable.of(taxDetails);
-    }
+  }
 }

@@ -8,7 +8,19 @@ import { TaxDetails } from '../core/models/tax-details.model';
 })
 export class TaxDetailsComponent implements OnInit {
 
-  @Input() taxDetails: TaxDetails;
+  @Input() taxDetails: TaxDetails = new TaxDetails();
+
+  getNetWithSuperAmount() {
+    return '$' + (this.taxDetails.NetAmount + this.taxDetails.Superannuation).toFixed(2);
+  }
+
+  getGrossIncomeLabelText() {
+    if (this.taxDetails.GrossIncludesSuper && this.taxDetails.Superannuation > 0) {
+      return 'Gross Income (+ super)';
+    } else {
+      return 'Gross Income';
+    }
+  }
 
   constructor() {
   }

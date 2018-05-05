@@ -10,7 +10,7 @@
   <div class="font-thick">${{taxDetails.Superannuation | number : '1.2-2'}}</div>
 </div>
 <div class="row  pad-bot-10">
-  <div class="col-md-3">Gross Income</div>
+  <div class="col-md-3" [innerHTML] = "getGrossIncomeLabelText()"></div>
   <div class="font-thick">${{taxDetails.GrossAmount | number : '1.2-2'}}</div>
 </div>
 <div class="row  pad-bot-10">
@@ -23,7 +23,7 @@
 </div>
 <div class="row  pad-bot-10">
   <div class="col-md-3">Net + Superannuation</div>
-  <div class="font-thick">${{taxDetails.NetWithSuper | number : '1.2-2'}}</div>
+  <div class="font-thick" [innerHTML]="getNetWithSuperAmount()"></div>
 </div>
 </div>
 </div>

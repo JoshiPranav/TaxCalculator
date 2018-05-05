@@ -10,6 +10,7 @@ describe('IncomeTaxCalculatorService', () => {
   });
 
   it('should be created', inject([IncomeTaxCalculatorService], (service: IncomeTaxCalculatorService) => {
+    const incomeTax = service.calculateTax(50000, 5000, false);
     expect(service).toBeTruthy();
   }));
 });
