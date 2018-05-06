@@ -45,4 +45,118 @@ describe('IncomedetailsComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('form invalid when empty', () => {
+    expect(component.idForm.valid).toBeFalsy();
+  });
+
+  it('fields to be invalid on init', () => {
+    const grossSal = component.idForm.controls['grossSalary'];
+    expect(grossSal.valid).toBeFalsy();
+  });
+
+  it('gross salary field required check', () => {
+    let errors = {};
+    const grossSal = component.idForm.controls['grossSalary'];
+    errors = grossSal.errors || {};
+    expect(errors['required']).toBeTruthy();
+  });
+
+  it('gross salary field numeric pattern invalid (non-numeric)', () => {
+    let errors = {};
+    const grossSal = component.idForm.controls['grossSalary'];
+    grossSal.setValue('test');
+    errors = grossSal.errors || {};
+    expect(errors['patternInvalid']).toBeTruthy();
+  });
+
+  it('gross salary field numeric pattern invalid (numeric left space)', () => {
+    let errors = {};
+    const grossSal = component.idForm.controls['grossSalary'];
+    grossSal.setValue('1234 ');
+    errors = grossSal.errors || {};
+    expect(errors['patternInvalid']).toBeTruthy();
+  });
+
+  it('gross salary field numeric range invalid (0)', () => {
+    let errors = {};
+    const grossSal = component.idForm.controls['grossSalary'];
+    grossSal.setValue('0');
+    errors = grossSal.errors || {};
+    expect(errors['numericRangeInvalid']).toBeTruthy();
+  });
+
+  it('gross salary field numeric range invalid (<0)', () => {
+    let errors = {};
+    const grossSal = component.idForm.controls['grossSalary'];
+    grossSal.setValue('-1');
+    errors = grossSal.errors || {};
+    expect(errors['numericRangeInvalid']).toBeTruthy();
+  });
+
+  it('gross salary field should be valid', () => {
+    let errors = {};
+    const grossSal = component.idForm.controls['grossSalary'];
+    grossSal.setValue('1234');
+    errors = grossSal.errors || {};
+    expect(errors['patternInvalid']).toBeFalsy();
+    expect(errors['numericRangeInvalid']).toBeFalsy();
+  });
+
+  it('superannuation field numeric pattern invalid (non-numeric)', () => {
+    let errors = {};
+    const superannuation = component.idForm.controls['superannuation'];
+    superannuation.setValue('test');
+    errors = superannuation.errors || {};
+    expect(errors['patternInvalid']).toBeTruthy();
+  });
+
+  it('superannuation field numeric pattern invalid (numeric left space)', () => {
+    let errors = {};
+    const superannuation = component.idForm.controls['superannuation'];
+    superannuation.setValue('1234 ');
+    errors = superannuation.errors || {};
+    expect(errors['patternInvalid']).toBeTruthy();
+  });
+
+  it('superannuation field numeric range invalid (0)', () => {
+    let errors = {};
+    const superannuation = component.idForm.controls['superannuation'];
+    superannuation.setValue('0');
+    errors = superannuation.errors || {};
+    expect(errors['numericRangeInvalid']).toBeTruthy();
+  });
+
+  it('superannuation field numeric range invalid (<9.5)', () => {
+    let errors = {};
+    const superannuation = component.idForm.controls['superannuation'];
+    superannuation.setValue('9.49');
+    errors = superannuation.errors || {};
+    expect(errors['numericRangeInvalid']).toBeTruthy();
+  });
+
+  it('superannuation field numeric range invalid (>100)', () => {
+    let errors = {};
+    const superannuation = component.idForm.controls['superannuation'];
+    superannuation.setValue('100');
+    errors = superannuation.errors || {};
+    expect(errors['patternInvalid']).toBeTruthy();
+  });
+
+  it('superannuation numeric range invalid (<0)', () => {
+    let errors = {};
+    const superannuation = component.idForm.controls['superannuation'];
+    superannuation.setValue('-1');
+    errors = superannuation.errors || {};
+    expect(errors['numericRangeInvalid']).toBeTruthy();
+  });
+
+  it('superannuation field should be valid', () => {
+    let errors = {};
+    const superannuation = component.idForm.controls['superannuation'];
+    superannuation.setValue('12.34');
+    errors = superannuation.errors || {};
+    expect(errors['patternInvalid']).toBeFalsy();
+    expect(errors['numericRangeInvalid']).toBeFalsy();
+  });
 });

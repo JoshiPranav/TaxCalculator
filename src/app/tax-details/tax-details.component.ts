@@ -11,7 +11,7 @@ export class TaxDetailsComponent implements OnInit {
   @Input() taxDetails: TaxDetails = new TaxDetails();
 
   getNetWithSuperAmount() {
-    return '$' + (this.taxDetails.NetAmount + this.taxDetails.Superannuation).toFixed(2);
+    return (this.taxDetails.NetAmount + this.taxDetails.Superannuation).toFixed(2);
   }
 
   getGrossIncomeLabelText() {

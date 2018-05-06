@@ -23,7 +23,7 @@
 </div>
 <div class="row  pad-bot-10">
   <div class="col-md-3">Net + Superannuation</div>
-  <div class="font-thick" [innerHTML]="getNetWithSuperAmount()"></div>
+  <div class="font-thick" [innerHTML]="'$' + (getNetWithSuperAmount() | number : '1.2-2')"></div>
 </div>
 </div>
 </div>

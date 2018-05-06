@@ -17,7 +17,7 @@ describe('TaxCalculatorService', () => {
     expect(service).toBeTruthy();
   }));
 
-  it('Gross salary should be excluding super when income includes super',
+  it('gross salary should be excluding super when income includes super',
   inject([TaxCalculatorService], (service: TaxCalculatorService) => {
     const taxDetails = service.calculateTax(new IncomeDetails(50000, true, 10));
     taxDetails.subscribe((data => {
@@ -29,7 +29,7 @@ describe('TaxCalculatorService', () => {
     }));
   }));
 
-  it('Gross salary should be including super when income includes super',
+  it('gross salary should be including super when income includes super',
   inject([TaxCalculatorService], (service: TaxCalculatorService) => {
     const taxDetails = service.calculateTax(new IncomeDetails(50000, false, 10));
     taxDetails.subscribe((data => {
