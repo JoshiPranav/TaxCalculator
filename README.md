@@ -1,6 +1,6 @@
 This is a simple tax calculator given gross and superannuation amounts. Gross may or maynot include superannuation, which is indicated using "Includes Super annuation" checkbox. 
 
-When "Includes Superannuation" checkbox is checked, its mandatory to enter a superannuation value, which would then indicate that gross amount includes super.
+When "Includes Superannuation" checkbox is checked, its mandatory to enter a superannuation value (which defaults to 9.5 if empty).
 
 When "Includes Superannuation" checkbox is not checked, one may or may not enter superannuation amount.
 
