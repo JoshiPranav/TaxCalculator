@@ -7,23 +7,23 @@
 <div class="card-body">
 <div class="row  pad-bot-10">
   <div class="col-md-3">Superannuation</div>
-  <div class="font-thick">${{taxDetails.Superannuation | number : '1.2-2'}}</div>
+  <div id="superannuationResultId" class="font-thick">${{taxDetails.Superannuation | number : '1.2-2'}}</div>
 </div>
 <div class="row  pad-bot-10">
   <div class="col-md-3" [innerHTML] = "getGrossIncomeLabelText()"></div>
-  <div class="font-thick">${{taxDetails.GrossAmount | number : '1.2-2'}}</div>
+  <div id="grossIncomeResultId" class="font-thick">${{taxDetails.GrossAmount | number : '1.2-2'}}</div>
 </div>
 <div class="row  pad-bot-10">
   <div class="col-md-3">Tax</div>
-  <div class="font-thick">${{taxDetails.Tax | number : '1.2-2'}}</div>
+  <div id="taxResultId" class="font-thick">${{taxDetails.Tax | number : '1.2-2'}}</div>
 </div>
 <div class="row  pad-bot-10">
   <div class="col-md-3">Net</div>
-  <div class="font-thick">${{taxDetails.NetAmount | number : '1.2-2'}}</div>
+  <div id="netResultId" class="font-thick">${{taxDetails.NetAmount | number : '1.2-2'}}</div>
 </div>
 <div class="row  pad-bot-10">
   <div class="col-md-3">Net + Superannuation</div>
-  <div class="font-thick" [innerHTML]="'$' + (getNetWithSuperAmount() | number : '1.2-2')"></div>
+  <div id="netPluSuperResultId" class="font-thick" [innerHTML]="'$' + (getNetWithSuperAmount() | number : '1.2-2')"></div>
 </div>
 </div>
 </div>

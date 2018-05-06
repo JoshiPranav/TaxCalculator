@@ -17,4 +17,6 @@ When "Includes Superannuation" checkbox is not checked, one may or may not enter
 
 >>Run `ng test` to execute the unit tests
 
+>> Run `ng e2e` to execute end to end tests
+
 
