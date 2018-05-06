@@ -7,7 +7,9 @@ When "Includes Superannuation" checkbox is not checked, one may or may not enter
 
 ## To start
 
-Download or clone.
+>>Download or clone.
+
+>>Navigate to root path of the project in Terminal window
 
 >>Run 'npm install'
 
